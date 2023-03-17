@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AllSprites
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 50
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 4d03b704508ca5a4a9cf615ad47d4bc2, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: fe5e4a209b9b6054c881c54d1c360630, type: 3}
+  - {fileID: 21300000, guid: 23f27324ff83a914c8f3a881f1c142f0, type: 3}
+  - {fileID: 21300000, guid: e024b7541a74523499686063f9702325, type: 3}
+  - {fileID: 21300000, guid: ec80275635855084a84a2c43b144a88c, type: 3}
+  - {fileID: 21300000, guid: 6c18f8964ae46e840841294ac490d15c, type: 3}
+  - {fileID: 21300000, guid: f9a52f885bcc25d45ad76b781d49da4c, type: 3}
+  - {fileID: 21300000, guid: 2359947ad6226564ba70378c4453c0b0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Square
+  - Equipment_Shield
+  - Weapons_Sword
+  - Circle
+  - Donut
+  - Hexagon
+  - Rewards_Star
+  m_RenderDataMap: {}
+  m_Tag: AllSprites
+  m_IsVariant: 0
