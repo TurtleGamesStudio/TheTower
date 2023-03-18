@@ -1,9 +1,4 @@
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Finance
@@ -11,6 +6,7 @@ namespace Finance
     public class WalletInitializer : MonoBehaviour
     {
         [SerializeField] private Currency[] _currencies;
+        [SerializeField] private CurrencyIconsDatabase _currenciesDatabase;
 
         private Wallet[] _wallets;
         public static WalletInitializer Instance;
@@ -29,7 +25,10 @@ namespace Finance
 
                 for (int i = 0; i < _currencies.Length; i++)
                 {
-                    _wallets[i] = new Wallet(_currencies[i]);
+                    if (_currencies[i] == Currency.Dollar)
+                        _wallets[i] = new Wallet(_currencies[i]);
+                    else
+                        _wallets[i] = new SavableWallet(_currencies[i]);
                 }
             }
         }
@@ -37,6 +36,11 @@ namespace Finance
         public Wallet GetWallet(Currency currency)
         {
             return _wallets.First(targetWallet => targetWallet.Currency == currency);
+        }
+
+        public Sprite GetSprite(Currency currency)
+        {
+            return _currenciesDatabase.GetIcon(currency);
         }
     }
 }

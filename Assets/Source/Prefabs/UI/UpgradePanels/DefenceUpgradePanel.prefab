@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6474882396932893280, guid: b80460854754f8d4887846ff52c70b2c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.23796998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474882396932893280, guid: b80460854754f8d4887846ff52c70b2c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.20651762
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474882396932893280, guid: b80460854754f8d4887846ff52c70b2c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474882398364098386, guid: b80460854754f8d4887846ff52c70b2c, type: 3}
+      propertyPath: m_text
+      value: Upgrade defence
+      objectReference: {fileID: 0}
     - target: {fileID: 6474882398479842288, guid: b80460854754f8d4887846ff52c70b2c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

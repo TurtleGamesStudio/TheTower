@@ -3,9 +3,9 @@ using Finance;
 using UnityEngine.UI;
 using System;
 
-[RequireComponent(typeof(LevelOfUpgrade))]
-public class AbilityUpgrade : MonoBehaviour
+public class AbilityUpgrade : MonoBehaviour, IAbilityUpgrade
 {
+    [SerializeField] private LevelOfUpgrade _levelOfUpgrade;
     [SerializeField] private UpgradeViewData _upgradeViewData;
     [SerializeField] private FloatParametr _floatParametr;
     [SerializeField] private Id _id;
@@ -16,9 +16,9 @@ public class AbilityUpgrade : MonoBehaviour
 
     private Button _button;
     private GameObject _max;
-    private LevelOfUpgrade _levelOfUpgrade;
     private Wallet _wallet;
     private UpgradablePrice _upgradablePrice;
+    private int _priceLevel;
 
     public FloatParametr FloatParametr => _floatParametr;
     public LevelOfUpgrade LevelOfUpgrade => _levelOfUpgrade;
@@ -30,7 +30,6 @@ public class AbilityUpgrade : MonoBehaviour
 
     public void Init(ContainerInstantiator containerInstantiator, UpgradePanel template)
     {
-        _levelOfUpgrade = GetComponent<LevelOfUpgrade>();
         _wallet = WalletInitializer.Instance.GetWallet(_currency);
         UpgradePanel upgradePanel = Instantiate(template, containerInstantiator.GetContainer());
 
@@ -40,7 +39,8 @@ public class AbilityUpgrade : MonoBehaviour
         _levelOfUpgrade.MaxLevelReached += OnMaxLevelReached;
         _levelOfUpgrade.Init(_id);
 
-        _upgradablePrice = new UpgradablePrice(_levelOfUpgrade.Current, _currency, _id.ToString(), _priceUpgradeSettings);
+        _priceLevel = 0;
+        _upgradablePrice = new UpgradablePrice(_priceLevel, _currency, _id.ToString(), _priceUpgradeSettings);
         _floatParametr.Init(_levelOfUpgrade.Current);
         Unlock();
 
@@ -48,7 +48,7 @@ public class AbilityUpgrade : MonoBehaviour
         _wallet.BalanceChanged += OnBalanceChanged;
         _button.onClick.AddListener(Upgrade);
 
-        upgradePanel.Init(this);
+        upgradePanel.Init(_floatParametr, _upgradablePrice.Price, _upgradeViewData.Description);
 
         if (_levelOfUpgrade.Current == _levelOfUpgrade.Max)
         {
@@ -65,19 +65,31 @@ public class AbilityUpgrade : MonoBehaviour
 
     public void Upgrade()
     {
-        UpgradeToLevel(_levelOfUpgrade.Current + 1);
-    }
-
-    private void UpgradeToLevel(int level)
-    {
-        _levelOfUpgrade.UpgradeToLevel(level);
+        _priceLevel++;
+        _levelOfUpgrade.UpgradeToLevel(_levelOfUpgrade.Current + 1);
 
         int expendeture = Price.Value;
-        _upgradablePrice.Upgrade(level);
+        _upgradablePrice.Upgrade(_priceLevel);
         _wallet.Withdraw(expendeture);
         _floatParametr.UpgradeToLevel(_levelOfUpgrade.Current);
         Upgraded?.Invoke(_levelOfUpgrade.Current);
+
+
+        //UpgradeToLevel(_levelOfUpgrade.Current + 1);
+
+
     }
+
+    //private void UpgradeToLevel(int level)
+    //{
+    //    _levelOfUpgrade.UpgradeToLevel(level);
+
+    //    int expendeture = Price.Value;
+    //    _upgradablePrice.Upgrade(level);
+    //    _wallet.Withdraw(expendeture);
+    //    _floatParametr.UpgradeToLevel(_levelOfUpgrade.Current);
+    //    Upgraded?.Invoke(_levelOfUpgrade.Current);
+    //}
 
     private void OnMaxLevelReached()
     {

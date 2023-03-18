@@ -14,12 +14,15 @@ public class UpgradePanel : MonoBehaviour
     public Button Button => _button;
     public GameObject Max => _max;
 
-    public void Init(AbilityUpgrade abilityUpgrade)
+    public void Init(FloatParametr floatParametr, Price price, string description)//(AbilityUpgrade abilityUpgrade)
     {
-        _floatParametrView.Init(abilityUpgrade.FloatParametr);
-        _priceView.Init(abilityUpgrade.Price);
+        //_floatParametrView.Init(abilityUpgrade.FloatParametr);
+        //_priceView.Init(abilityUpgrade.Price);
+        //_description.text = abilityUpgrade.UpgradeViewData.Description;
 
-        _description.text = abilityUpgrade.UpgradeViewData.Description;
+        _floatParametrView.Init(floatParametr);
+        _priceView.Init(price);
+        _description.text = description;
     }
 
     private void OnMaxLevelReached()

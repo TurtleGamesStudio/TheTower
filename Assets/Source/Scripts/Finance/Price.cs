@@ -14,6 +14,7 @@ namespace Finance
         //public event Action<string, string, int> Purchased;
 
         public int Value => _value;
+        public Currency Currency => _currency;
 
         public Price(Currency currency, string purchaseObjectName, int value)
         {

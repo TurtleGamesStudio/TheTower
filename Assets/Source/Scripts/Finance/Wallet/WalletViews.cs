@@ -13,7 +13,7 @@ namespace Finance
             foreach (WalletView view in _views)
             {
                 Wallet wallet = WalletInitializer.Instance.GetWallet(view.Currency);
-                view.Init(wallet);
+                view.Init(wallet, WalletInitializer.Instance.GetSprite(view.Currency));
             }
         }
     }

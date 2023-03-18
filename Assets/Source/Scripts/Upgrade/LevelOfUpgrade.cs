@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-public class LevelOfUpgrade : MonoBehaviour
+[CreateAssetMenu(fileName = "LevelOfUpgrade", menuName = "LevelOfUpgrade")]
+public class LevelOfUpgrade : ScriptableObject
 {
     [SerializeField, Min(1)] private int _max;
 

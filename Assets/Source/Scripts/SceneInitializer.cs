@@ -5,7 +5,8 @@ public class SceneInitializer : MonoBehaviour
 {
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private Base _base;
-    [SerializeField] private AbilityUpgradeInitializer _upgradeInitializer;
+    [SerializeField] private AbilityUpgradeInitializer _weaponUpgradeInitializer;
+    [SerializeField] private AbilityUpgradeInitializer _baseUpgradeInitializer;
 
     [Header("Wallets")]
     [SerializeField] private WalletInitializer _walletInitializer;
@@ -17,7 +18,8 @@ public class SceneInitializer : MonoBehaviour
         WalletInitializer.Instance.GetWallet(Currency.Dollar).Set(80);
         _walletViews.Init();
 
-        _upgradeInitializer.Init();
+        _weaponUpgradeInitializer.Init();
+        _baseUpgradeInitializer.Init();
 
         _base.Init();
         _enemySpawner.Init(_base);

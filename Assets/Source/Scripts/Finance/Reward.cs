@@ -1,7 +1,9 @@
 using Finance;
+using System;
 using UnityEngine;
 
-public class Reward : MonoBehaviour
+[Serializable]
+public struct Reward
 {
     [SerializeField] private Currency _currency;
     [SerializeField] private int _value;

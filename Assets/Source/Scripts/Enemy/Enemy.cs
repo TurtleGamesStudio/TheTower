@@ -4,21 +4,20 @@ using UnityEngine;
 using System;
 
 [RequireComponent(typeof(EnemyMovement))]
-[RequireComponent(typeof(Reward))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private FloatParametr _maxHealthParametr;
     [SerializeField] private float _damage = 1;
 
     [SerializeField] private ParticleSystem _explosion;
+    [SerializeField] private List<Reward> _rewardList;
 
-    private Reward _reward;
     private EnemyMovement _enemyMovement;
     private Health _health;
 
     public event Action<Enemy> Died;
 
-    public Reward Reward => _reward;
+    public IReadOnlyList<Reward> RewardList => _rewardList;
     public ParticleSystem Explosion => _explosion;
 
     private void OnDisable()
@@ -37,7 +36,6 @@ public class Enemy : MonoBehaviour
     public void Init(Transform target)
     {
         _enemyMovement = GetComponent<EnemyMovement>();
-        _reward = GetComponent<Reward>();
         _enemyMovement.Init();
         _enemyMovement.Move(target);
         _maxHealthParametr.Init(0);

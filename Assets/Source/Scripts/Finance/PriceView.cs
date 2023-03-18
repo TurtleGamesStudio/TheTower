@@ -1,21 +1,22 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System;
 
 namespace Finance
 {
     /// <summary>
     ///Must be disabled before using
     /// </summary>
-    [RequireComponent(typeof(TMP_Text))]
     public class PriceView : MonoBehaviour
     {
-        private Price _price;
-        private TMP_Text _text;
+        [SerializeField] private RectTransform _textRectTransform;
+        [SerializeField] private float _charWidth = 27.6f;
+        [SerializeField] private int _maxSteps = 3;
+        [SerializeField] private TMP_Text _text;
+        [SerializeField] private Image _icon;
 
-        private void Awake()
-        {
-            _text = GetComponent<TMP_Text>();
-        }
+        private Price _price;
 
         private void OnEnable()
         {
@@ -33,12 +34,19 @@ namespace Finance
         public void Init(Price price)
         {
             _price = price;
+            _icon.sprite = WalletInitializer.Instance.GetSprite(price.Currency);
             enabled = true;
         }
 
         private void OnChanged(int value)
         {
-            _text.text = "$ " + value.ToString();
+            _text.text = value.ToString();
+
+            int rank = MyMathf.GetRank(value);
+            int steps = Mathf.Min(rank, _maxSteps);
+            float width = _charWidth * steps;
+
+            _textRectTransform.sizeDelta = new Vector2(width, _textRectTransform.sizeDelta.y);
         }
     }
 }

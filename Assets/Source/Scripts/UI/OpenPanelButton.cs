@@ -1,16 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Button))]
-public class OpenUpgradePanelButton : MonoBehaviour
+public class OpenPanelButton : MonoBehaviour
 {
     [SerializeField] private RectTransform _targetPanel;
+    [SerializeField] private UnityEvent _onActivePanelClick;
 
     private Button _button;
     public bool IsPanelActive { get; private set; }
 
-    public event Action<OpenUpgradePanelButton> Clicked;
+    public event Action<OpenPanelButton> Clicked;
 
     private void Awake()
     {
@@ -30,7 +32,8 @@ public class OpenUpgradePanelButton : MonoBehaviour
     private void OnClick()
     {
         if (IsPanelActive)
-            Close();
+            _onActivePanelClick.Invoke();
+        //Close();
         else
             Open();
 

@@ -5,6 +5,7 @@ public class RewardSpawner : MonoBehaviour
 {
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private RewardView _rewardTemplate;
+    [SerializeField] private float _offsetY = 0.3f;
 
     private void OnEnable()
     {
@@ -18,10 +19,15 @@ public class RewardSpawner : MonoBehaviour
 
     private void OnDied(Enemy enemy)
     {
-        Wallet wallet = WalletInitializer.Instance.GetWallet(enemy.Reward.Currency);
-        wallet.PutIn(enemy.Reward.Value);
+        for (int i = 0; i < enemy.RewardList.Count; i++)
+        {
+            Reward reward = enemy.RewardList[i];
+            Wallet wallet = WalletInitializer.Instance.GetWallet(reward.Currency);
+            wallet.PutIn(reward.Value);
 
-        RewardView reward = Instantiate(_rewardTemplate, enemy.transform.position, Quaternion.identity);
-        reward.Show(enemy.Reward.Value);
+
+            RewardView rewardView = Instantiate(_rewardTemplate, enemy.transform.position + Vector3.up * _offsetY * i, Quaternion.identity);
+            rewardView.Show(reward);
+        }
     }
 }

@@ -1,21 +1,27 @@
 using UnityEngine;
+using System;
 
-public class OpenUpgradePanelButtonManager : MonoBehaviour
+public class OpenPanelButtonManager : MonoBehaviour
 {
-    [SerializeField] private OpenUpgradePanelButton[] _buttons;
-    [SerializeField] private CameraMover _cameraMover;
+    [SerializeField] private OpenPanelButton[] _buttons;
 
-    private OpenUpgradePanelButton _previousButton;
+    private OpenPanelButton _previousButton;
     private bool _isLastStateOpen;
+
+    public event Action Hided;
+    public event Action Showed;
+
+    public bool IsLastStateOpen => _isLastStateOpen;
 
     private void Awake()
     {
-        foreach (var button in _buttons)
-        {
-            button.Close();
-        }
+        _buttons[0].Open();
+        _previousButton = _buttons[0];
 
-        _isLastStateOpen = false;
+        for (int i = 1; i < _buttons.Length; i++)
+            _buttons[i].Close();
+
+        _isLastStateOpen = true;
     }
 
     private void OnEnable()
@@ -34,7 +40,7 @@ public class OpenUpgradePanelButtonManager : MonoBehaviour
         }
     }
 
-    private void OnClick(OpenUpgradePanelButton button)
+    private void OnClick(OpenPanelButton button)
     {
         if (_previousButton != null && button != _previousButton)
         {
@@ -46,12 +52,12 @@ public class OpenUpgradePanelButtonManager : MonoBehaviour
         if (_isLastStateOpen)
         {
             if (button.IsPanelActive == false)
-                _cameraMover.MoveUp();
+                Hided?.Invoke();
         }
         else
         {
             if (button.IsPanelActive)
-                _cameraMover.MoveDown();
+                Showed?.Invoke();
         }
 
         _isLastStateOpen = button.IsPanelActive;

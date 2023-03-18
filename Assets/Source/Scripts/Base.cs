@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.SceneManagement;
@@ -25,7 +23,6 @@ public class Base : MonoBehaviour
     {
         _weapon.Init();
         _rangeView.Init(_weapon);
-        _maxHealthParametr.Init(0);
         _health = new Health(_maxHealthParametr);
         _health.EqualToZero += Die;
     }

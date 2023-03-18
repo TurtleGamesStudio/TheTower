@@ -8,19 +8,19 @@ public class AbilityUpgradeInitializer : MonoBehaviour
 
     public void Init()
     {
-        AbilityUpgrade[] abilities = GetComponentsInChildren<AbilityUpgrade>();
+        IAbilityUpgrade[] abilities = GetComponentsInChildren<IAbilityUpgrade>();
 
-        foreach (AbilityUpgrade ability in abilities)
+        foreach (IAbilityUpgrade ability in abilities)
         {
             ability.Init(_containerInstantiator, _upgradePanelTemplate);
         }
 
-        IntAbilityUpgrade[] intAbilities = GetComponentsInChildren<IntAbilityUpgrade>();
+        //IntAbilityUpgrade[] intAbilities = GetComponentsInChildren<IntAbilityUpgrade>();
 
-        foreach (IntAbilityUpgrade ability in intAbilities)
-        {
-            ability.Init(_containerInstantiator, _intUpgradePanelTemplate);
-        }
+        //foreach (IntAbilityUpgrade ability in intAbilities)
+        //{
+        //    ability.Init(_containerInstantiator, _intUpgradePanelTemplate);
+        //}
 
         _containerInstantiator.UpdateHeight();
     }

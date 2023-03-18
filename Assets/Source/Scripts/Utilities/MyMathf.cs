@@ -2,6 +2,19 @@ using UnityEngine;
 
 public static class MyMathf
 {
+    public static int GetRank(int number)
+    {
+        int rank = 1;
+
+        while (number > 9)
+        {
+            number /= 10;
+            rank++;
+        }
+
+        return rank;
+    }
+
     public static int MoveTowards(int value, int target, int delta)
     {
         if (value > target)

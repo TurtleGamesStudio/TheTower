@@ -1,30 +1,32 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.UI;
 
 namespace Finance
 {
-    [RequireComponent(typeof(TMP_Text))]
     public class WalletView : MonoBehaviour
     {
         [SerializeField] private Currency _currency;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TMP_Text _text;
 
         [SerializeField] private AnimationCurve _countDurationDependency;
 
-        private TMP_Text _text;
         private int _value;
         private Coroutine _valueChangingCoroutine;
         private Wallet _wallet;
 
         public Currency Currency => _currency;
 
-        private void Awake()
-        {
-            _text = GetComponent<TMP_Text>();
-        }
+        //private void Awake()
+        //{
+        //    _text = GetComponent<TMP_Text>();
+        //}
 
-        public void Init(Wallet wallet)
+        public void Init(Wallet wallet, Sprite sprite)
         {
+            _icon.sprite = sprite;
             _wallet = wallet;
             _value = wallet.Value;
             _text.text = _value.ToString();

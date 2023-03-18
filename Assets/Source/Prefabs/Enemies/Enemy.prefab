@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 5168210341623549744}
   - component: {fileID: 3076285893043032839}
   - component: {fileID: 326704401713426690}
-  - component: {fileID: 623135648530047191}
   - component: {fileID: 3410788409476735382}
   m_Layer: 0
   m_Name: Enemy
@@ -171,6 +170,11 @@ MonoBehaviour:
   _maxHealthParametr: {fileID: 0}
   _damage: 1
   _explosion: {fileID: 1086089198617360854, guid: b738a2f736ef73249bf377daa05314d1, type: 3}
+  _rewardList:
+  - _currency: 0
+    _value: 1
+  - _currency: 1
+    _value: 1
 --- !u!61 &326704401713426690
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -197,20 +201,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &623135648530047191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7016078286985802603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f86f782d4dece44e89babd0c0cee047, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currency: 0
-  _value: 0
 --- !u!114 &3410788409476735382
 MonoBehaviour:
   m_ObjectHideFlags: 0

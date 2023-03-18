@@ -1,19 +1,22 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.UI;
+using Finance;
 
 public class RewardView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _icon;
+    [SerializeField] private Image _icon;
     [SerializeField] private TMP_Text _text;
 
     [Header("Animation")]
     [SerializeField] private float _height = 1;
     [SerializeField] private float _duration = 1;
 
-    public void Show(int value)
+    public void Show(Reward reward)//(int value)
     {
-        _text.text = value.ToString();
+        _text.text = reward.Value.ToString();
+        _icon.sprite = WalletInitializer.Instance.GetSprite(reward.Currency);
 
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOLocalMoveY(transform.localPosition.y + _height, _duration));
