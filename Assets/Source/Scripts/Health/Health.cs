@@ -7,8 +7,12 @@ public class Health// : MonoBehaviour
     private float _maxValue;// => _floatParametr.Value;
     private float _value;
 
+    public event Action Upgraded;
     public event Action<float> Changed;
     public event Action EqualToZero;
+
+    public float Value => _value;
+    public float MaxValue => _maxValue;
 
     public Health(FloatParametr maxHealthData)
     {
@@ -18,12 +22,16 @@ public class Health// : MonoBehaviour
         _floatParametr.Upgraded += OnUpgraded;
     }
 
+    public void Increase(float value)
+    {
+        if (value < 0)
+        {
+            throw new ArgumentException($"{nameof(value)} must be non negative.");
+        }
 
-    //public void Init(FloatParametr maxHealthData)
-    //{
-    //    _floatParametr = maxHealthData;
-    //    _value = _maxValue;
-    //}
+        _value = Mathf.Min(_value + value, _maxValue);
+        Changed?.Invoke(_value);
+    }
 
     public void Decrease(float damage)
     {
@@ -59,5 +67,6 @@ public class Health// : MonoBehaviour
         float share = _value / _maxValue;
         _maxValue = _floatParametr.Value;
         _value = _maxValue * share;
+        Upgraded?.Invoke();
     }
 }

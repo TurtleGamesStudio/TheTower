@@ -5,6 +5,7 @@ public class SceneInitializer : MonoBehaviour
 {
     [SerializeField] private EnemySpawner _enemySpawner;
     [SerializeField] private Base _base;
+    [SerializeField] private BaseView _baseView;
     [SerializeField] private AbilityUpgradeInitializer _weaponUpgradeInitializer;
     [SerializeField] private AbilityUpgradeInitializer _baseUpgradeInitializer;
 
@@ -22,6 +23,7 @@ public class SceneInitializer : MonoBehaviour
         _baseUpgradeInitializer.Init();
 
         _base.Init();
+        _baseView.Init(_base.Weapon.Damage, _base.Regenerator.RestoringValue, _base.Health);
         _enemySpawner.Init(_base);
     }
 }

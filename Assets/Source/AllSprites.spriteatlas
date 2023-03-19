@@ -56,6 +56,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 90b36055ee997a9428861ff777564ad1, type: 3}
   - {fileID: 21300000, guid: ec80275635855084a84a2c43b144a88c, type: 3}
   - {fileID: 21300000, guid: 6c18f8964ae46e840841294ac490d15c, type: 3}
+  - {fileID: 21300000, guid: f65dad07f5903c347a2b161b50b7b276, type: 3}
   - {fileID: 21300000, guid: c2349537061b06645a1dcbe6d1771934, type: 3}
   - {fileID: 21300000, guid: f9a52f885bcc25d45ad76b781d49da4c, type: 3}
   - {fileID: 21300000, guid: 2359947ad6226564ba70378c4453c0b0, type: 3}
@@ -67,6 +68,7 @@ SpriteAtlas:
   - Weapons_Hammer
   - Circle
   - Donut
+  - Elements_Life
   - Cent
   - Hexagon
   - Rewards_Star

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Base : MonoBehaviour
 {
     [SerializeField] private FloatParametr _maxHealthParametr;
+    [SerializeField] private HealthRegenerator _regenerator;
 
     [Header("Weapon")]
     [SerializeField] private Weapon _weapon;
@@ -13,6 +14,10 @@ public class Base : MonoBehaviour
     private Health _health;
 
     public event Action Died;
+
+    public Health Health => _health;
+    public Weapon Weapon => _weapon;
+    public HealthRegenerator Regenerator => _regenerator;
 
     private void OnDisable()
     {
@@ -25,6 +30,9 @@ public class Base : MonoBehaviour
         _rangeView.Init(_weapon);
         _health = new Health(_maxHealthParametr);
         _health.EqualToZero += Die;
+
+        _regenerator.Init(_health);
+        _regenerator.StartHeal();
     }
 
     public void TakeDamage(float damage)

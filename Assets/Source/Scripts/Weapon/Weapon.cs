@@ -20,6 +20,7 @@ public class Weapon : MonoBehaviour
 
     public bool CanShoot { get; private set; }
     public float Range => _range.Value;
+    public FloatParametr Damage => _damage;
 
     private void OnDisable()
     {

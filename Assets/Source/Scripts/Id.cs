@@ -4,5 +4,6 @@ public enum Id
     Damage,
     Reload,
     Health,
-    SpawnInterval
+    SpawnInterval,
+    HealthRestoring
 }
